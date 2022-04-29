@@ -1,0 +1,95 @@
+body {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	background: #404040;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	overflow: hidden;
+}
+
+/*** Barre d'outils ***/
+.tools-panel {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+
+	background: linear-gradient(to bottom, #0266cf, #7ebeff);
+	padding: 1.5vw;
+	color: white;
+
+	height: 8vw;
+}
+
+.tool-block {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+
+	font-family: sans-serif;
+	font-size: 1.5vw;
+}
+
+.tool-block .titre {
+	font-weight: bold;
+	font-size: 1.7vw;
+	margin-bottom: 1.5vw;
+} 
+
+.tool-block .options {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	grid-gap: 0.2vw;
+	grid-auto-rows: minmax(1.8vw, auto);
+}
+
+.tool-block .options div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.tool-block .options div.shadow-wrapper {
+	filter: drop-shadow(0 0 0.1vw black);
+}
+
+input#btn_color_pick_mode {
+	height: 2.5vw;
+	width: 2.5vw;
+	border: none;
+	clip-path: polygon(0% 100%, 0% 80%, 40% 40%, 20% 10%, 30% 0%, 50% 20%, 70% 0%, 100% 30%, 80% 50%, 100% 70%, 90% 80%, 60% 60%, 20% 100%);
+	background-color: #DDD;
+	cursor: pointer;
+}
+
+input#btn_color_pick_mode.mode_activated {
+	background-color: #4ceb1f;
+}
+
+.tool-block .options div input[type="number"] { width: 3em; }
+
+/*** Grille de dessin ***/
+#drawing-zone {
+	width: 96vw;
+	height: calc(100vh - 8vw);
+	background: white;
+	overflow: auto;
+	padding: 2vw;
+}
+
+#drawing-zone .pixels-grid {
+	display: grid;
+	grid-template-columns: repeat(10, 5vw);
+	grid-auto-rows: 5vw;
+}
+
+#drawing-zone .pixels-grid .pixel {
+	height: 4.8vw;
+	width: 4.8vw;
+	border: 0.1vw dotted #0009;
+	cursor: cell;
+}

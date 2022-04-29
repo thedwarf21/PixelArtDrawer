@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="" />
+    <meta charset="utf8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <!--link rel="manifest" href="manifest.json" /-->
+    <!--link rel="icon" type="image/png" href="images/spaceship.png" /-->
+    <title>Pixel Art Drawer</title>
+
+    <!-- Styles et fonts -->
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="rs_toast.css" />
+    
+    <!-- Scripts -->
+    <script type="text/javascript" src="PixelGrid.js"></script>
+    <script type="text/javascript" src="rs_wcl.js"></script>
+    <script type="text/javascript" src="rs_toast.js"></script>
+    <script type="text/javascript" src="MainController.js"></script>
+  </head>
+
+  <!-- Corps de la page -->
+  <body onload="onLoad()">
+    <div class="tools-panel">
+      <div class="tool-block">
+        <div class="titre">Dimensions</div>
+        <div class="options">
+          <div class="label">Largeur</div>
+          <div><input id="width" type="number" /></div>
+          <div class="label">Hauteur</div>
+          <div><input id="height" type="number" /></div>
+        </div>
+      </div>
+      <div class="tool-block">
+        <div class="titre">Pinceau</div>
+        <div class="options">
+          <div class="label">Couleur</div>
+          <div><input id="color" type="color" /></div>
+          <div class="label">Copier la couleur</div>
+          <div class="shadow-wrapper">
+            <input type="button" value="" id="btn_color_pick_mode"
+                     onclick="document.currentController.toggleColorPick()" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="drawing-zone"></div>
+  </body>
+</html>
