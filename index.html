@@ -11,19 +11,45 @@
     <title>Pixel Art Drawer</title>
 
     <!-- Styles et fonts -->
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-    <link rel="stylesheet" type="text/css" href="rs_toast.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/rs_toast.css" />
+    <link rel="stylesheet" type="text/css" href="css/rs_dialog.css" />
     
     <!-- Scripts -->
-    <script type="text/javascript" src="PixelGrid.js"></script>
-    <script type="text/javascript" src="rs_wcl.js"></script>
-    <script type="text/javascript" src="rs_toast.js"></script>
-    <script type="text/javascript" src="MainController.js"></script>
+    <script type="text/javascript" src="scripts/PixelGrid.js"></script>
+    <script type="text/javascript" src="scripts/ProjectFile.js"></script>
+    <script type="text/javascript" src="scripts/rs_wcl.js"></script>
+    <script type="text/javascript" src="scripts/rs_toast.js"></script>
+    <script type="text/javascript" src="scripts/rs_dialog.js"></script>
+    <script type="text/javascript" src="scripts/MainController.js"></script>
   </head>
 
   <!-- Corps de la page -->
   <body onload="onLoad()">
     <div class="tools-panel">
+
+      <!-- Ouvrir / Sauvegarder un projet de dessin pixel art -->
+      <div class="tool-block">
+        <div class="titre">Projet</div>
+        <div class="options">
+          <div class="label">Ouvrir</div>
+          <div>
+            <input type="button" value="..." class="project-btn" onclick="document.getElementById('file_selector').click()" />
+            <input type="file" id="file_selector" onchange="ProjectFile.load(function(obj) {
+                let self = document.getElementById('file_selector');
+                if (self.value) {
+                  document.currentController.scope.pixel_grid.setProject(obj);
+                  self.value = '';
+                }
+              })" />
+          </div>
+          <div class="label">Sauvegarder</div>
+          <div><input type="button" value="..." class="project-btn" 
+                      onclick="ProjectFile.save(document.currentController.scope.pixel_grid.getProject())" /></div>
+        </div>
+      </div>
+
+      <!-- Réglage des dimensions -->
       <div class="tool-block">
         <div class="titre">Dimensions</div>
         <div class="options">
@@ -33,6 +59,8 @@
           <div><input id="height" type="number" /></div>
         </div>
       </div>
+
+      <!-- Couleur du pinceau -->
       <div class="tool-block">
         <div class="titre">Pinceau</div>
         <div class="options">
@@ -45,8 +73,32 @@
           </div>
         </div>
       </div>
+
+      <!-- Niveau de zoom -->
+      <div class="tool-block">
+        <div class="titre">Zoom</div>
+        <div class="options">
+          <div class="label">Plus grand</div>
+          <div><input type="button" value="+" class="zoom-btn" 
+                      onclick="document.currentController.scope.pixel_grid.zoomIn()" /></div>
+          <div class="label">Plus petit</div>
+          <div><input type="button" value="-" class="zoom-btn" 
+                      onclick="document.currentController.scope.pixel_grid.zoomOut()" /></div>
+        </div>
+      </div>
+
+      <!-- Exporter l'image -->
+      <div class="tool-block">
+        <div class="titre">Export image</div>
+        <div class="options">
+          <div class="label">SVG</div>
+          <div><input type="button" value="+" class="export-btn" 
+                      onclick="ProjectFile.exportSvg()" /></div>
+        </div>
+      </div>
     </div>
 
+    <!-- Zone de dessin (gérée en JS) -->
     <div id="drawing-zone"></div>
   </body>
 </html>
