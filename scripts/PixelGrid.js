@@ -118,11 +118,12 @@ class PixelGrid extends HTMLDivElement {
 		for (let y=0; y<this.#grid_height; y++) {
 			for (let x=0; x<this.#grid_width; x++) {
 				let pixel = this.#elts_pixel[y * this.#grid_width + x];
-				svg_code += `<rect x="${x * SVG_PIXEL_SIZE}" 
-								y="${y * SVG_PIXEL_SIZE}" 
-								width="${SVG_PIXEL_SIZE}" 
-								height="${SVG_PIXEL_SIZE}" 
-								style="fill:${pixel.style.backgroundColor}" />`;
+				if (pixel.style.backgroundColor)
+					svg_code += `<rect x="${x * SVG_PIXEL_SIZE}" 
+							y="${y * SVG_PIXEL_SIZE}" 
+							width="${SVG_PIXEL_SIZE}" 
+							height="${SVG_PIXEL_SIZE}" 
+							style="fill:${pixel.style.backgroundColor}" />`;
 			}
 		}
 		return svg_code + "</svg>";
